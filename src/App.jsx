@@ -137,3 +137,32 @@ function StatCard({ title, value, subtitle }) {
     </div>
   )
 }
+function InputNumber({ label, hint, value, onChange, suffix, min = 0.1, step = 0.1 }) {
+  return (
+    <div className="border rounded-2xl p-4 bg-slate-50 hover:bg-slate-100 transition">
+      <label className="block text-sm font-medium mb-1">{label}</label>
+      <div className="flex items-center gap-2">
+        <input
+          type="number"
+          inputMode="decimal"
+          min={min}
+          step={step}
+          className="w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-slate-300 bg-white"
+          value={value}
+          onChange={(e) => {
+            const raw = e.target.value;
+            // Izinkan kosong saat user menghapus karakter
+            if (raw === "") {
+              onChange(min); // fallback cepat; bisa juga "" kalau Anda ingin
+              return;
+            }
+            const n = Number(raw);
+            onChange(Number.isFinite(n) ? n : min);
+          }}
+        />
+        {suffix && <span className="text-sm text-slate-600 w-16 text-right">{suffix}</span>}
+      </div>
+      {hint && <p className="text-xs text-slate-500 mt-1">{hint}</p>}
+    </div>
+  );
+}
