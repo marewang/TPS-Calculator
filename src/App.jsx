@@ -68,7 +68,7 @@ export default function App() {
             <InputCard label="Jumlah User Terdaftar" hint="contoh: 1.000.000" value={users} onChange={(v) => setUsers(Math.max(0, parseNumber(v)))} suffix="user" />
             <InputCard label="% Daily Active Users (DAU)" hint="mis. 10 artinya 10%" value={dauPercent} onChange={(v) => setDauPercent(Math.max(0, parseNumber(v)))} suffix="%" />
             <InputCard label="% Peak Concurrent" hint="mis. 2 artinya 2% dari DAU" value={concurrentPercent} onChange={(v) => setConcurrentPercent(Math.max(0, parseNumber(v)))} suffix="%" />
-            <InputCard label="Think Time" hint="detik per aksi (bilangan bulat ≥ 1)" value={thinkTimeSec} onChange={(n) => setThinkTimeSec(Math.max(1, n))} suffix="detik"/>
+            <InputCard label="Think Time" hint="detik per aksi (bilangan bulat ≥ 1)" value={thinkTimeSec} onChange={(n) => setThinkTimeSec(Math.max(0, parseNumber(n)))} suffix="detik"/>
           </div>
 
           <p className="text-xs text-slate-500 mt-3">Catatan: % diinput sebagai angka biasa (contoh 10 = 10%). Think time bisa desimal (contoh 0.5 detik = 2 RPS/user).</p>
