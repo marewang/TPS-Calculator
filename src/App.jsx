@@ -68,7 +68,7 @@ export default function App() {
             <InputCard label="Jumlah User Terdaftar" hint="contoh: 1.000.000" value={users} onChange={(v) => setUsers(Math.max(0, parseNumber(v)))} suffix="user" />
             <InputCard label="% Daily Active Users (DAU)" hint="mis. 10 artinya 10%" value={dauPercent} onChange={(v) => setDauPercent(Math.max(0, parseNumber(v)))} suffix="%" />
             <InputCard label="% Peak Concurrent" hint="mis. 2 artinya 2% dari DAU" value={concurrentPercent} onChange={(v) => setConcurrentPercent(Math.max(0, parseNumber(v)))} suffix="%" />
-            <InputNumber label="Think Time" hint="detik per aksi (bilangan bulat ≥ 1)" value={thinkTimeSec} min={1} step={1} onChange={(n) => setThinkTimeSec(Math.max(1, n))} suffix="detik"/>
+            <InputCard label="Think Time" hint="detik per aksi (bilangan bulat ≥ 1)" value={thinkTimeSec} onChange={(n) => setThinkTimeSec(Math.max(1, n))} suffix="detik"/>
           </div>
 
           <p className="text-xs text-slate-500 mt-3">Catatan: % diinput sebagai angka biasa (contoh 10 = 10%). Think time bisa desimal (contoh 0.5 detik = 2 RPS/user).</p>
@@ -136,33 +136,4 @@ function StatCard({ title, value, subtitle }) {
       {subtitle && <div className="text-xs text-slate-500 mt-2">{subtitle}</div>}
     </div>
   )
-}
-function InputNumber({ label, hint, value, onChange, suffix, min = 1, step = 1 }) {
-  return (
-    <div className="border rounded-2xl p-4 bg-slate-50 hover:bg-slate-100 transition">
-      <label className="block text-sm font-medium mb-1">{label}</label>
-      <div className="flex items-center gap-2">
-        <input
-          type="number"
-          inputMode="numeric"
-          min={min}
-          step={step}
-          className="w-full px-3 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-slate-300 bg-white"
-          value={value}
-          onChange={(e) => {
-            const raw = e.target.value;
-            if (raw === "") {
-              // Jika dikosongkan, set nilai minimum agar tidak NaN
-              onChange(min);
-              return;
-            }
-            const n = Number(raw);
-            onChange(Number.isFinite(n) ? n : min);
-          }}
-        />
-        {suffix && <span className="text-sm text-slate-600 w-16 text-right">{suffix}</span>}
-      </div>
-      {hint && <p className="text-xs text-slate-500 mt-1">{hint}</p>}
-    </div>
-  );
 }
