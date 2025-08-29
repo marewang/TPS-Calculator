@@ -68,8 +68,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <header className="px-6 py-5 border-b bg-white sticky top-0 z-10">
-        <h1 className="text-2xl font-bold">Kalkulator Kapasitas (DAU • Concurrency • TPS)</h1>
-        <p className="text-sm text-slate-600 mt-1">Masukkan asumsi untuk menghitung DAU, Peak Concurrent, RPS per user, dan TPS total.</p>
+        <h1 className="text-2xl font-bold">KALKULATOR TPS</h1>
+        <p className="text-sm text-slate-600 mt-1">Aplikasi Untuk Menghitung Transaction Per Second</p>
       </header>
 
       <main className="max-w-6xl mx-auto p-6 grid gap-6">
@@ -91,15 +91,15 @@ export default function App() {
             />
 
             <InputCard
-              label="% Daily Active Users (DAU)"
-              hint="mis. 10 artinya 10%"
+              label="Persentase Daily Active Users (DAU)"
+              hint="mis. 10 artinya 10% dari jumlah user terdaftar"
               value={dauPercent}
               onChange={(v) => setDauPercent(Math.max(0, parseNumber(v)))}
               suffix="%"
             />
 
             <InputCard
-              label="% Peak Concurrent"
+              label="Persentase Concurrent"
               hint="mis. 2 artinya 2% dari DAU"
               value={concurrentPercent}
               onChange={(v) => setConcurrentPercent(Math.max(0, parseNumber(v)))}
@@ -119,10 +119,10 @@ export default function App() {
         </section>
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatCard title="Jumlah DAU" value={fmtInt(dau)} subtitle={`= Users × ${fmtDec(dauRate*100,2)}%`} />
-          <StatCard title="Peak Concurrent" value={fmtInt(peakConcurrent)} subtitle={`= DAU × ${fmtDec(concurrentRate*100,2)}%`} />
+          <StatCard title="Jumlah Daily Active User" value={fmtInt(dau)} subtitle={`= Users × ${fmtDec(dauRate*100,2)}%`} />
+          <StatCard title="Jumlah Concurrent User" value={fmtInt(peakConcurrent)} subtitle={`= DAU × ${fmtDec(concurrentRate*100,2)}%`} />
           <StatCard title="RPS per User" value={fmtDec(rpsPerUser, 3)} subtitle="= 1 ÷ Think Time (detik)" />
-          <StatCard title="TPS Total (≈ RPS)" value={fmtInt(tps)} subtitle="= Peak Concurrent × RPS/User" />
+          <StatCard title="TPS Total" value={fmtInt(tps)} subtitle="= Jumlah Concurrent User × RPS/User" />
         </section>
 
         <section className="bg-white rounded-2xl shadow p-6">
@@ -170,7 +170,7 @@ export default function App() {
         </section>
 
         <footer className="text-xs text-slate-500 pb-8">
-          Siap untuk Vercel: jalankan <code>npm run build</code> lalu deploy. Butuh ekspor CSV/print PDF? Beritahu saya.
+          By: Marewang
         </footer>
       </main>
     </div>
