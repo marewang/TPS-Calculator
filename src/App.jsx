@@ -130,19 +130,18 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
             <div>
               <label className="text-sm font-medium">Think Time (detik)</label>
-<input
-  type="range"
-  min={0.1}
-  max={60}
-  step={0.1}
-  value={thinkTimeSec}
-  onChange={(e) => setThinkTimeSec(parseNumber(e.target.value))}
-  className="w-full"
-/>
-<div className="text-sm text-slate-600 mt-1">
-  {thinkTimeSec} detik → RPS/User ≈ {fmtDec(rpsPerUser, 3)}
-</div>
-
+              <input
+                type="range"
+                min={0.1}
+                max={60}
+                step={0.1}
+                value={thinkTimeSec}
+                onChange={(e) => setThinkTimeSec(parseNumber(e.target.value))}
+                className="w-full"
+              />
+              <div className="text-sm text-slate-600 mt-1">
+                {thinkTimeSec} detik → RPS/User ≈ {fmtDec(rpsPerUser, 3)}
+              </div>
 
             <div>
               <label className="text-sm font-medium">% Peak Concurrent</label>
